@@ -35,13 +35,13 @@ static const Env envs[] = {
 
 /* Autostart */
 static const char *const autostart[] = {
-        "fcitx5", "-d", "-r", "-s", "4", NULL,
-        "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1", NULL,
-        "swayidle", "-w", NULL,
-        "sway-audio-idle-inhibit", NULL,
-        "systemctl", "--user", "import-environment", "WAYLAND_DISPLAY", "XDG_CURRENT_DESKTOP", NULL,
-        "dbus-update-activation-environment", "--systemd", "WAYLAND_DISPLAY", "XDG_CURRENT_DESKTOP=wlroots", NULL,
-        NULL /* terminate */
+    "fcitx5", "-d", "-r", "-s", "4", NULL,
+    "/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1", NULL,
+    "swayidle", "-w", NULL,
+    "sway-audio-idle-inhibit", NULL,
+    "systemctl", "--user", "import-environment", "WAYLAND_DISPLAY", "XDG_CURRENT_DESKTOP", NULL,
+    "dbus-update-activation-environment", "--systemd", "WAYLAND_DISPLAY", "XDG_CURRENT_DESKTOP=wlroots", NULL,
+    NULL /* terminate */
 };
 
 
@@ -51,12 +51,20 @@ static const Rule rules[] = {
 	/* examples: */
 	{ "firefox_EXAMPLE",  NULL,       1 << 8,       0,           -1 }, /* Start on ONLY tag "9" */
 	{ "steam",            NULL,       1 << 5,       1,           -1 }, /* Start on ONLY tag "6" as floating*/
+	{ "steam",            "Steam",    1 << 5,       0,           -1 }, /* Start on ONLY tag "6" as tiling*/
+	{ "steam",   "Sign in to Steam",  1 << 5,       1,           -1 }, /* Start on ONLY tag "6" as floating*/
+	{ "steam",     "Steam Settings",  1 << 5,       1,           -1 }, /* Start on ONLY tag "6" as floating*/
+	{ "steam",     "Steam Dialog",    1 << 5,       1,           -1 }, /* Start on ONLY tag "6" as floating*/
 	{ "lutris",           NULL,       1 << 5,       1,           -1 }, /* Start on ONLY tag "6" as floating*/
 	{ "xdg-desktop-portal-gtk", NULL, 0,            1,           -1 }, /* Start on currently visible tags floating, not tiled */
 	{ "mpv",              NULL,       0,            1,           -1 },
 	{ "galculator",       NULL,       0,            1,           -1 },
+	{ "Geeqie",           NULL,       0,            1,           -1 },
 	{ "LibreWolf",        "About",    0,            1,           -1 },
+	{ "pcmanfm-qt",       NULL,       0,            1,           -1 },
+	{ "pcmanfm-qt",       "jeff",     0,            0,           -1 },
 	{ "chat-simplex-desktop-MainKt",  NULL,  0,     1,           -1 },
+	{ "org.keepassxc.KeePassXC", "KeePassXC - Browser Access Request", 0, 1, -1 },
 };
 
 /* layout(s) */
@@ -170,6 +178,7 @@ static const Key keys[] = {
 	/* modifier                  key                 function         argument */
 	{ MODKEY,                    XKB_KEY_r,          spawn,           {.v = menucmd} },
 	{ MODKEY,                    XKB_KEY_Return,     spawn,           {.v = termcmd} },
+	{ MODKEY,                    XKB_KEY_t,          spawn,           {.v = termcmd} },
 	{ MODKEY|WLR_MODIFIER_CTRL,  XKB_KEY_b,          togglebar,       {0} },
 	{ MODKEY,                    XKB_KEY_w,          focusstack,      {.i = +1} },
 	{ MODKEY,                    XKB_KEY_j,          focusstack,      {.i = +1} },
