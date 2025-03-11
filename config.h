@@ -160,9 +160,9 @@ static const enum libinput_config_tap_button_map button_map = LIBINPUT_CONFIG_TA
 /* commands */
 static const char *termcmd[] = { "foot", NULL };
 static const char *menucmd[] = { "mew-run", NULL };
-static const char *volup[] = { "sh", "-c", "amixer -q set Master 5%+ ; pkill -10 slstatus", NULL };
-static const char *voldn[] = { "sh", "-c", "amixer -q set Master 5%- ; pkill -10 slstatus", NULL };
-static const char *volmu[] = { "sh", "-c", "amixer -q set Master toggle ; pkill -10 slstatus", NULL };
+static const char *volup[] = { "sh", "-c", "wpctl set-volume @DEFAULT_SINK@ 5%+ ; pkill -10 slstatus", NULL };
+static const char *voldn[] = { "sh", "-c", "wpctl set-volume @DEFAULT_SINK@ 5%- ; pkill -10 slstatus", NULL };
+static const char *volmu[] = { "sh", "-c", "wpctl set-mute @DEFAULT_SINK@ toggle ; pkill -10 slstatus", NULL };
 static const char *audplay[] = { "playerctl", "play-pause", NULL };
 static const char *audnext[] = { "playerctl", "next", NULL };
 static const char *audprev[] = { "playerctl", "previous", NULL };
