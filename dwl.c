@@ -549,6 +549,7 @@ applyrules(Client *c)
 		c->geom.x = (mon->w.width - c->geom.width) / 2 + mon->m.x;
 		c->geom.y = (mon->w.height - c->geom.height) / 2 + mon->m.y;
 	}
+    c->isfloating |= client_is_float_type(c);
 	setmon(c, mon, newtags);
 	attachclients(mon);
 }
