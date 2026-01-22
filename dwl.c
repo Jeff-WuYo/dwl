@@ -712,7 +712,9 @@ autostartexec(void) {
 		if ((autostart_pids[i] = fork()) == 0) {
 			setsid();
 			execvp(*p, (char *const *)p);
-			die("dwl: execvp %s:", *p);
+            /* FIX: Use _exit instead of die() */
+            perror("dwl: execvp"); /* Print error to stderr manually */
+            _exit(1);              /* Immediate exit, no cleanup hooks */
 		}
 		/* skip arguments */
 		while (*++p);
